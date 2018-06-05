@@ -13,7 +13,12 @@ class ExamList extends Component {
     }
 
     componentDidMount() {
-
+        const {navigation} = this.props;
+        const lessonId = navigation.getParam("lessonId")
+        this.setState({lessonId: lessonId})
+        fetch("http://localhost:8080/api/lesson/"+lessonId+"/exam")
+            .then(response => (response.json()))
+            .then(exams => this.setState({exams}))
     }
     render() {
         return(
@@ -21,13 +26,15 @@ class ExamList extends Component {
                 <Text h1>Exam List</Text>
                 <Text h1>Lesson Id {this.state.lessonId}</Text>
                 <Text h1>Exams {this.state.exams.length} </Text>
+
                 {this.state.exams.map(
                     (exam, index) => (
                         <ListItem
                             onPress={() => this.props.navigation
                                 .navigate("QuestionList", {examId: exam.id})}
                             key={index}
-                            title={exam.text}/>))}
+                            subtitle={exam.description}
+                            title={exam.title}/>))}
 
                 <Button  onPress={() => this.props.navigation
                     .navigate('ExamWidget') }

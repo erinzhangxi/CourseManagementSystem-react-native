@@ -36,6 +36,10 @@ class Home extends React.Component {
         <StatusBar barStyle="light-content"/>
         <FixedHeader/>
 
+          <Button title="Courses"
+                  onPress={() => this.props.navigation
+                      .navigate('QuestionList', {examId: 52}) } />
+
           <ExamWidget/>
 
         <Button title="Courses"

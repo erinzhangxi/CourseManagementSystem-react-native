@@ -38,12 +38,15 @@ class WidgetList extends Component {
           {"\n"}
             </Text>
 
-          <Button  onPress={() => this.props.navigation
+          <Button onPress={() => this.props.navigation
               .navigate('AssignmentList', {lessonId: this.state.lessonId}) }
                    backgroundColor='green'
                    title='Assignment List'/>
+          <Text>
+              {"\n"}
+          </Text>
           <Button  onPress={() => this.props.navigation
-              .navigate('ExamList') }
+              .navigate('ExamList', {lessonId: this.state.lessonId})}
                    backgroundColor='green'
                    title='ExamList'/>
       </View>

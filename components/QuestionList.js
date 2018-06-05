@@ -9,19 +9,29 @@ class QuestionList extends Component {
     super(props)
     this.state = {
       questions: [],
-      examId: 1
+      examId: 1,
+        choices: [],
+        truefalse: [],
+        essay: [],
+        blanks:[]
     }
   }
   componentDidMount() {
-    const {navigation} = this.props;
-    const examId = navigation.getParam("examId")
-    fetch("http://localhost:8080/api/exam/"+examId+"/question")
-      .then(response => (response.json()))
-      .then(questions => this.setState({questions}))
+      const examId = this.props.navigation.getParam("examId", 1);   // default courseId set to 1 if parameter not provided
+      this.setState({
+          examId: examId
+      })
+      fetch('http://localhost:8080/api/exam/' + examId + '/question')
+          .then(response => (response.json()))
+          .then(choices => this.setState({choices: choices}))
+
   }
   render() {
     return(
       <View style={{padding: 15}}>
+          <Text h2>Question List</Text>
+          <Text h2>Exam Id {this.state.examId}</Text>
+
       {this.state.questions.map(
         (question, index) => (
           <ListItem
