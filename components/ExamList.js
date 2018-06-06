@@ -31,13 +31,14 @@ class ExamList extends Component {
                     (exam, index) => (
                         <ListItem
                             onPress={() => this.props.navigation
-                                .navigate("QuestionList", {examId: exam.id})}
+                                .navigate("QuestionList", {lessonId: this.lessonId,
+                                                            examId: exam.id})}
                             key={index}
                             subtitle={exam.description}
                             title={exam.title}/>))}
 
                 <Button  onPress={() => this.props.navigation
-                    .navigate('ExamWidget') }
+                    .navigate('QuestionList') }
                          backgroundColor='blue'
                          title='Add Exam'/>
             </View>

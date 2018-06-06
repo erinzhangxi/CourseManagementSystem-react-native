@@ -5,15 +5,23 @@ class QuestionTypePicker extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      questionType: 0
+       questionType: 0
     }
+    this.updateType = this.updateType.bind(this);
   }
+
+  updateType(itemValue, itemIndex) {
+      this.setState({questionType: itemValue});
+      this.props.handler(itemValue);
+  }
+
   render() {
     return (
       <View>
         <Picker
           onValueChange={(itemValue, itemIndex) =>
-            this.setState({questionType: itemValue})}
+            this.updateType(itemValue, itemIndex)}
+
           selectedValue={this.state.questionType}>
           <Picker.Item value="MC" label="Multiple choice" />
           <Picker.Item value="ES" label="Essay" />
@@ -21,8 +29,6 @@ class QuestionTypePicker extends React.Component {
           <Picker.Item value="FB" label="Fill in the blanks" />
         </Picker>
 
-
-        <Text>{this.state.questionType}</Text>
       </View>
     )
   }

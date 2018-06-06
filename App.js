@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar, ScrollView } from 'react-native';
+import {Button, Divider} from 'react-native-elements'
 import FixedHeader from './elements/FixedHeader'
 import TextHeadings from './elements/TextHeadings'
 import Icons from './elements/Icons'
@@ -9,7 +10,6 @@ import QuestionTypePicker from './elements/QuestionTypePicker'
 import TrueFalseQuestionEditor from './elements/TrueFalseQuestionEditor'
 import MultipleChoiceQuestionEditor from './elements/MultipleChoiceQuestionEditor'
 import { createStackNavigator } from 'react-navigation'
-import {Button} from 'react-native-elements'
 import ScreenX from './elements/ScreenX'
 import CourseList from './components/CourseList'
 import ModuleList from './components/ModuleList'
@@ -17,10 +17,11 @@ import LessonList from './components/LessonList'
 import WidgetList from './components/WidgetList'
 import QuestionList from './components/QuestionList'
 import AssignmentWidget from './components/AssignmentWidget'
-import ExamWidget from './components/ExamWidget'
 import AssignmentList from './components/AssignmentList'
 import ExamList from './components/ExamList'
 import QuestionWidget from './components/QuestionWidget'
+import BlanksQuestionEditor from './elements/BlanksQuestionEditor'
+import EssayQuestionEditor from './elements/EssayQuestionEditor'
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -36,11 +37,10 @@ class Home extends React.Component {
         <StatusBar barStyle="light-content"/>
         <FixedHeader/>
 
-          <Button title="Courses"
-                  onPress={() => this.props.navigation
-                      .navigate('QuestionList', {examId: 52}) } />
-
-          <ExamWidget/>
+        <MultipleChoiceQuestionEditor />
+          <Divider style={{
+              backgroundColor:
+                  'blue' }}/>
 
         <Button title="Courses"
                 onPress={() => this.props.navigation
@@ -54,7 +54,8 @@ class Home extends React.Component {
         <Button title="Go to Screen B"
                 onPress={() => this.props.navigation
                   .navigate('ScreenB') } />
-          <Exam/>
+
+          {/*<Exam/>*/}
         <TrueFalseQuestionEditor/>
 
         <QuestionTypeButtonGroupChooser/>
@@ -104,14 +105,14 @@ const App = createStackNavigator({
   QuestionList,
   TrueFalseQuestionEditor,
   MultipleChoiceQuestionEditor,
+    BlanksQuestionEditor,
   ScreenA,
   ScreenB,
   ScreenX,
     AssignmentWidget,
-    ExamWidget,
     AssignmentList,
     ExamList,
-    QuestionWidget
+    EssayQuestionEditor
 });
 
 export default App;
