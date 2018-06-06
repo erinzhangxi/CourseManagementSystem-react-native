@@ -5,7 +5,7 @@ import {FormLabel, FormInput, FormValidationMessage}
     from 'react-native-elements'
 import ChoiceRow from './ChoiceRow'
 
-class MultipleChoiceQuestionEditor extends React.Component {
+class MultipleChoiceQuestionWidget extends React.Component {
     static navigationOptions = { title: "Multiple Choice"}
     constructor(props) {
         super(props)
@@ -15,7 +15,8 @@ class MultipleChoiceQuestionEditor extends React.Component {
             points: 0,
             solution: '',
             text:'',
-            choices:[{key:'',content:''}]
+            choices:[{key:'',content:''}],
+            examId: 1
         }
         this.addChoice = this.addChoice.bind(this);
         this.updateForm = this.updateForm.bind(this);
@@ -25,9 +26,12 @@ class MultipleChoiceQuestionEditor extends React.Component {
         this.renderPreviewList = this.renderPreviewList.bind(this);
     }
     componentDidMount() {
+        this.setState({examId: this.props.examId})
         this.findAllChoices();
     }
 
+
+    // TODO need to modify the API to use examId in the state
     submitForm() {
         alert("Your form is successfully submitted.");
         {this.state.choices.map((choice, index) => {
@@ -200,4 +204,4 @@ class MultipleChoiceQuestionEditor extends React.Component {
     }
 }
 
-export default MultipleChoiceQuestionEditor
+export default MultipleChoiceQuestionWidget

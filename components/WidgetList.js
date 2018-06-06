@@ -46,7 +46,7 @@ class WidgetList extends Component {
               {"\n"}
           </Text>
           <Button  onPress={() => this.props.navigation
-              .navigate('ExamList', {lessonId: this.state.lessonId})}
+              .navigate('ExamWidget', {lessonId: this.state.lessonId})}
                    backgroundColor='green'
                    title='ExamList'/>
       </View>

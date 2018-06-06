@@ -4,7 +4,7 @@ import {Text, Button, CheckBox} from 'react-native-elements'
 import {FormLabel, FormInput, FormValidationMessage}
     from 'react-native-elements'
 
-class BlanksQuestionEditor extends React.Component {
+class FillInTheBlanksQuestionWidget extends React.Component {
     static navigationOptions = { title: "Fill In the Blank Question"}
     constructor(props) {
         super(props)
@@ -58,4 +58,4 @@ class BlanksQuestionEditor extends React.Component {
     }
 }
 
-export default BlanksQuestionEditor
+export default FillInTheBlanksQuestionWidget
