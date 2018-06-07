@@ -33,7 +33,7 @@ class EssayQuestionWidget extends React.Component {
         let essay = {
             title: this.state.title,
             subtitle:this.state.description,
-            type: "essay",
+            type: "Essay",
             points: this.state.points,
             answers: this.state.text
         };
@@ -46,7 +46,6 @@ class EssayQuestionWidget extends React.Component {
         this.props.navigation
             .navigate('QuestionList');
     }
-
 
 
     updateForm(newState) {

@@ -36,19 +36,8 @@ class MultipleChoiceQuestionWidget extends React.Component {
         this.findAllChoices();
     }
 
-    
-    submitForm(examId) {
-        // alert("Your form is successfully submitted.");
-        // {this.state.choices.map((choice, index) => {
-        //     fetch('http://localhost:8080/api/choice/', {
-        //         body: JSON.stringify(choice),
-        //         headers: { 'Content-Type': 'application/json' },
-        //         method: 'POST'
-        //     }).then(response => (response.json()))
-        //         .then(() => { this.findAllChoices(); })
-        //
-        // })}
 
+    submitForm(examId) {
         let multiple = {
             title: this.state.title,
             subtitle:this.state.description,
@@ -64,7 +53,6 @@ class MultipleChoiceQuestionWidget extends React.Component {
         }).then(response => (response.json()));
         this.props.navigation
             .navigate('QuestionList');
-
     }
     findAllChoices() {
         fetch('http://localhost:8080/api/choices')

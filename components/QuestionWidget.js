@@ -20,7 +20,7 @@ class QuestionWidget extends React.Component {
             <ScrollView>
                 <View style={{padding: 15}}>
                     <Text h1>Exam Id {this.state.examId}</Text>
-                    <Text h4>Question List and add a qustion for the exam</Text>
+                    <Text h4>Question List and add a question for the exam</Text>
 
                     {this.state.questions.map( (question, index) => (
                         <ListItem

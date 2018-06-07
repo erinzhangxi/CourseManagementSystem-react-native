@@ -67,6 +67,18 @@ class QuestionList extends Component {
                                                 examId: this.state.examId,
                                                 lessonId: this.state.lessonId,
                                                 questionId: question.id})
+                                    if (question.type === "Essay")
+                                        this.props.navigation
+                                            .navigate("EssayQuestionWidget", {
+                                                examId: this.state.examId,
+                                                lessonId: this.state.lessonId,
+                                                questionId: question.id})
+                                    if (question.type === "FillInTheBlank")
+                                        this.props.navigation
+                                            .navigate("FillInTheBlanksQuestionWidget", {
+                                                examId: this.state.examId,
+                                                lessonId: this.state.lessonId,
+                                                questionId: question.id})
                                 }}
                                 key={index}
                                 subtitle={question.subtitle}
@@ -75,9 +87,6 @@ class QuestionList extends Component {
 
                     <QuestionTypePicker handler={this.updateQuestionType}/>
 
-                    <Text h1>{this.state.questionType}</Text>
-
-                    <Text h4>Exam ID is {this.state.examId}</Text>
                     <Button  onPress={()=> {
                         if (this.state.questionType === "TF") {
                             this.props.navigation
@@ -88,15 +97,21 @@ class QuestionList extends Component {
                         }
                         if (this.state.questionType === "MC")
                             this.props.navigation
-                                .navigate("MultipleChoiceQuestionWidget",{examId: this.state.examId,
-                                                                            lessonId: this.state.lessonId})
+                                .navigate("MultipleChoiceQuestionWidget",{
+                                    examId: this.state.examId,
+                                    lessonId: this.state.lessonId
+                                });
                         if (this.state.questionType === "FB")
                             this.props.navigation
-                                .navigate("FillInTheBlanksQuestionWidget")
+                                .navigate("FillInTheBlanksQuestionWidget", {
+                                    examId: this.state.examId,
+                                     lessonId: this.state.lessonId
+                                    });
                         if (this.state.questionType === "ES")
                             this.props.navigation
-                                .navigate("EssayQuestionWidget",{lessonId: this.state.lessonId,
-                                                                    examId: this.state.examId})
+                                .navigate("EssayQuestionWidget",{
+                                    lessonId: this.state.lessonId,
+                                    examId: this.state.examId})
                     }}
                              backgroundColor='blue'
                              title='Add a Question'/>

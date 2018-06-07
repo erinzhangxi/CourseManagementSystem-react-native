@@ -1,11 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, ScrollView } from 'react-native';
-import {Button, Divider} from 'react-native-elements'
+import { StyleSheet, View, StatusBar, ScrollView } from 'react-native';
+import {Button, Divider, Text} from 'react-native-elements'
 import FixedHeader from './elements/FixedHeader'
-import TextHeadings from './elements/TextHeadings'
-import Icons from './elements/Icons'
-import Exam from './elements/Exam'
-import QuestionTypeButtonGroupChooser from './elements/QuestionTypeButtonGroupChooser'
 import QuestionTypePicker from './elements/QuestionTypePicker'
 import TrueOrFalseQuestionWidget from './elements/TrueOrFalseQuestionWidget'
 import MultipleChoiceQuestionWidget from './elements/MultipleChoiceQuestionWidget'
@@ -40,14 +36,14 @@ class Home extends React.Component {
           <Divider style={{
               backgroundColor:
                   'blue' }}/>
-
+          <View style={{padding:15}}>
+          <Text h4 style={{color:'blue', fontWeight:'bold'}}>Welcome to Course Manager</Text>
+          <Text h5 style={{padding: 15, fontWeight:'bold'}}>You may navigate to courses from the button below.</Text>
         <Button title="Courses"
                 onPress={() => this.props.navigation
                   .navigate('CourseList') } />
 
-
-        <QuestionTypePicker/>
-
+</View>
       </ScrollView>
     )
   }
@@ -62,7 +58,7 @@ const App = createStackNavigator({
   QuestionList,
     TrueOrFalseQuestionWidget,
     MultipleChoiceQuestionWidget,
-   // FillInTheBlanksQuestionWidget,
+    FillInTheBlanksQuestionWidget,
   ScreenX,
     AssignmentWidget,
     AssignmentList,
