@@ -46,39 +46,12 @@ class Home extends React.Component {
                   .navigate('CourseList') } />
 
 
-          {/*<Exam/>*/}
-
-        <QuestionTypeButtonGroupChooser/>
         <QuestionTypePicker/>
 
       </ScrollView>
     )
   }
 }
-
-class ScreenA extends React.Component {
-  static navigationOptions = {title: "Screen A"}
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <View>
-        <Text h1>Screen A</Text>
-        <Button title="Go Home"
-                onPress={() =>this.props
-                  .navigation
-                  .goBack()} />
-      </View>
-    )
-  }
-}
-
-const ScreenB = () => (
-  <View>
-    <Text h1>Screen B</Text>
-  </View>
-)
 
 const App = createStackNavigator({
   Home,
@@ -87,11 +60,9 @@ const App = createStackNavigator({
   LessonList,
   WidgetList,
   QuestionList,
-   TrueOrFalseQuestionWidget,
+    TrueOrFalseQuestionWidget,
     MultipleChoiceQuestionWidget,
-    FillInTheBlanksQuestionWidget,
-  ScreenA,
-  ScreenB,
+   // FillInTheBlanksQuestionWidget,
   ScreenX,
     AssignmentWidget,
     AssignmentList,

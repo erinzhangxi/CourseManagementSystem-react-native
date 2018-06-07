@@ -48,7 +48,8 @@ class ExamWidget extends Component {
             .then(() => { this.findAllExams(); });
 
         this.props.navigation
-            .navigate('QuestionList'), {examId: newExamID}
+            .navigate('QuestionList', {lessonId: this.state.lessonId,
+                                        examId: newExamID})
     }
 
     render() {

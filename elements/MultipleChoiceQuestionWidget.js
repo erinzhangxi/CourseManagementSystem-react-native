@@ -24,25 +24,46 @@ class MultipleChoiceQuestionWidget extends React.Component {
         this.deleteChoice = this.deleteChoice.bind(this);
         this.submitForm = this.submitForm.bind(this);
         this.renderPreviewList = this.renderPreviewList.bind(this);
+        this.findAllChoices = this.findAllChoices.bind(this);
     }
     componentDidMount() {
-        this.setState({examId: this.props.examId})
+        const lessonId = this.props.navigation.getParam("lessonId");
+        const examId = this.props.navigation.getParam("examId");
+        this.setState({
+            lessonId: lessonId,
+            examId: examId
+        })
         this.findAllChoices();
     }
 
+    
+    submitForm(examId) {
+        // alert("Your form is successfully submitted.");
+        // {this.state.choices.map((choice, index) => {
+        //     fetch('http://localhost:8080/api/choice/', {
+        //         body: JSON.stringify(choice),
+        //         headers: { 'Content-Type': 'application/json' },
+        //         method: 'POST'
+        //     }).then(response => (response.json()))
+        //         .then(() => { this.findAllChoices(); })
+        //
+        // })}
 
-    // TODO need to modify the API to use examId in the state
-    submitForm() {
+        let multiple = {
+            title: this.state.title,
+            subtitle:this.state.description,
+            type: "MultipleChoice",
+            points: this.state.points,
+            answers: this.state.choices
+        };
         alert("Your form is successfully submitted.");
-        {this.state.choices.map((choice, index) => {
-            fetch('http://localhost:8080/api/choice/', {
-                body: JSON.stringify(choice),
-                headers: { 'Content-Type': 'application/json' },
-                method: 'POST'
-            }).then(response => (response.json()))
-                .then(() => { this.findAllChoices(); })
-
-        })}
+        fetch('http://localhost:8080/api/exam/EID/choice'.replace('EID', examId), {
+            body: JSON.stringify(multiple),
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST'
+        }).then(response => (response.json()));
+        this.props.navigation
+            .navigate('QuestionList');
 
     }
     findAllChoices() {
@@ -191,7 +212,7 @@ class MultipleChoiceQuestionWidget extends React.Component {
                     <Button	backgroundColor="blue"
                                color="white"
                                title="Submit"
-                                onPress={()=> this.submitForm()}/>
+                                onPress={()=> this.submitForm(this.state.examId)}/>
 
 
                     <Text>

@@ -57,10 +57,16 @@ class QuestionList extends Component {
                                 onPress={() => {
                                     if (question.type === "TrueFalse")
                                         this.props.navigation
-                                            .navigate("TrueOrFalseQuestionWidget", {questionId: question.id})
+                                            .navigate("TrueOrFalseQuestionWidget", {
+                                                examId: this.state.examId,
+                                                lessonId: this.state.lessonId,
+                                                questionId: question.id})
                                     if (question.type === "MultipleChoice")
                                         this.props.navigation
-                                            .navigate("MultipleChoiceQuestionWidget", {questionId: question.id})
+                                            .navigate("MultipleChoiceQuestionWidget", {
+                                                examId: this.state.examId,
+                                                lessonId: this.state.lessonId,
+                                                questionId: question.id})
                                 }}
                                 key={index}
                                 subtitle={question.subtitle}
@@ -70,20 +76,26 @@ class QuestionList extends Component {
                     <QuestionTypePicker handler={this.updateQuestionType}/>
 
                     <Text h1>{this.state.questionType}</Text>
+
                     <Text h4>Exam ID is {this.state.examId}</Text>
                     <Button  onPress={()=> {
-                        if (this.state.questionType === "TF")
+                        if (this.state.questionType === "TF") {
                             this.props.navigation
-                                .navigate("TrueOrFalseQuestionWidget")
+                                .navigate("TrueOrFalseQuestionWidget", {
+                                    examId: this.state.examId,
+                                    lessonId: this.state.lessonId
+                                });
+                        }
                         if (this.state.questionType === "MC")
                             this.props.navigation
-                                .navigate("MultipleChoiceQuestionWidget",{examId: this.state.examId})
+                                .navigate("MultipleChoiceQuestionWidget",{examId: this.state.examId,
+                                                                            lessonId: this.state.lessonId})
                         if (this.state.questionType === "FB")
                             this.props.navigation
                                 .navigate("FillInTheBlanksQuestionWidget")
                         if (this.state.questionType === "ES")
                             this.props.navigation
-                                .navigate("EssayQuestionWidget",{lessonId: this.lessonId,
+                                .navigate("EssayQuestionWidget",{lessonId: this.state.lessonId,
                                                                     examId: this.state.examId})
                     }}
                              backgroundColor='blue'

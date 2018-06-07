@@ -17,11 +17,12 @@ class EssayQuestionWidget extends React.Component {
             lessonId: '1'
         }
         this.submitForm = this.submitForm.bind(this);
+        this.updateForm = this.updateForm.bind(this);
     }
-    // update exam ID
+
     componentDidMount() {
-        const examId = this.props.examId;
-        const lessonId = this.props.lessonId;
+        const examId = this.props.navigation.getParam("examId");
+        const lessonId = this.props.navigation.getParam("lessonId");
         this.setState({
             lessonId: lessonId,
             examId: examId
@@ -36,7 +37,6 @@ class EssayQuestionWidget extends React.Component {
             points: this.state.points,
             answers: this.state.text
         };
-        alert("exam id is " + examId);
         alert("Your form is successfully submitted.");
         fetch('http://localhost:8080/api/exam/EID/essay'.replace('EID', examId), {
             body: JSON.stringify(essay),
@@ -117,7 +117,7 @@ class EssayQuestionWidget extends React.Component {
                     <Button	backgroundColor="blue"
                                color="white"
                                title="Submit"
-                               onPress={()=> this.submitForm(this.props.examId)}/>
+                               onPress={()=> this.submitForm(this.state.examId)}/>
 
 
                     <Text>

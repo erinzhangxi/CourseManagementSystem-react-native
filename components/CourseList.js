@@ -22,7 +22,7 @@ class CourseList extends Component {
           <ListItem
             onPress={() => this.props.
               navigation.navigate("ModuleList",
-              {courseId: course.id})}             //parameter
+              {courseId: course.id})}
             title={course.title}
             key={index}/>
         ))}
